@@ -28,9 +28,26 @@ public class VehicleService {
         float f = (float) (Math.pow(r2,2) -  Math.pow(r3,2) - Math.pow(x2,2) + Math.pow(x3,2) - Math.pow(y2,2) +Math.pow(y3,2));
         float x = ((e*d) - (b*f))/((a*d) - (b*c));
         float y = ((a*f) - (e*c))/((a*d) - (b*c));
-        vehiclePosition.setX(x);
-        vehiclePosition.setY(y);
-        return vehiclePosition;
+        float equation1 = (float) (Math.pow((x - x1),2) + Math.pow((y - y1),2));
+        float equation2 = (float) (Math.pow((x - x2),2) + Math.pow((y - y2),2));
+        float equation3 = (float) (Math.pow((x - x3),2) + Math.pow((y - y3),2));
+        float equality1 = (float) Math.pow(r1,2) - equation1;
+        float equality2 = (float) Math.pow(r2,2) - equation2;
+        float equality3 = (float) Math.pow(r3,2) - equation3;
+        if(Math.abs(equality1) <Math.pow(10,-12) & Math.abs(equality2) <Math.pow(10,-12) & Math.abs(equality3) <Math.pow(10,-12)){
+            vehiclePosition.setX(roundNumber((float) x,1));
+            vehiclePosition.setY(roundNumber((float) y,1));
+            return vehiclePosition;
+        }else{
+            return null;
+        }
+    }
+
+    public float roundNumber(float number, int digitsNumber){
+        float result = number * (float) Math.pow(10, digitsNumber);
+        result = Math.round(result);
+        result = result/(float) Math.pow(10, digitsNumber);
+        return result;
     }
 
     public boolean isInDanger(String [] messages){
