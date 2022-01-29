@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Location {
-    private float xPosition;
-    private float yPosition;
+public class Position {
+    private float x;
+    private float y;
 }

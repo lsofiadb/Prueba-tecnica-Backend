@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class Satellite {
     private String name;
     private float distance;
-    private Location location;
+    private Position position;
 }

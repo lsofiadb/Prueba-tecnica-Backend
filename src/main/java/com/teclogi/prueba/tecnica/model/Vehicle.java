@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Vehicle {
-    private Location position;
+    private Position position;
     private boolean isInDanger;
 }

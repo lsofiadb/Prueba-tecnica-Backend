@@ -1,6 +1,6 @@
 package com.teclogi.prueba.tecnica.service;
 
-import com.teclogi.prueba.tecnica.model.Location;
+import com.teclogi.prueba.tecnica.model.Position;
 import com.teclogi.prueba.tecnica.model.Satellite;
 import org.springframework.stereotype.Service;
 
@@ -8,15 +8,15 @@ import java.util.ArrayList;
 
 @Service
 public class VehicleService {
-    public Location getLocation(ArrayList<Satellite> satellites){
-        Location vehicleLocation = new Location();
+    public Position getLocation(ArrayList<Satellite> satellites){
+        Position vehiclePosition = new Position();
         /*-----Via Cramer's rule----*/
-        float x1 = satellites.get(0).getLocation().getXPosition();
-        float x2 = satellites.get(1).getLocation().getXPosition();
-        float x3 = satellites.get(2).getLocation().getXPosition();
-        float y1 = satellites.get(0).getLocation().getYPosition();
-        float y2 = satellites.get(1).getLocation().getYPosition();
-        float y3 = satellites.get(2).getLocation().getYPosition();
+        float x1 = satellites.get(0).getPosition().getX();
+        float x2 = satellites.get(1).getPosition().getX();
+        float x3 = satellites.get(2).getPosition().getX();
+        float y1 = satellites.get(0).getPosition().getY();
+        float y2 = satellites.get(1).getPosition().getY();
+        float y3 = satellites.get(2).getPosition().getY();
         float r1 = satellites.get(0).getDistance();
         float r2 = satellites.get(1).getDistance();
         float r3 = satellites.get(2).getDistance();
@@ -28,11 +28,10 @@ public class VehicleService {
         float f = (float) (Math.pow(r2,2) -  Math.pow(r3,2) - Math.pow(x2,2) + Math.pow(x3,2) - Math.pow(y2,2) +Math.pow(y3,2));
         float x = ((e*d) - (b*f))/((a*d) - (b*c));
         float y = ((a*f) - (e*c))/((a*d) - (b*c));
-        vehicleLocation.setXPosition(x);
-        vehicleLocation.setYPosition(y);
-        return vehicleLocation;
+        vehiclePosition.setX(x);
+        vehiclePosition.setY(y);
+        return vehiclePosition;
     }
-
 
     public boolean isInDanger(String [] messages){
 

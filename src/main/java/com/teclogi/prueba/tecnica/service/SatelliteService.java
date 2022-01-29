@@ -1,6 +1,6 @@
 package com.teclogi.prueba.tecnica.service;
 
-import com.teclogi.prueba.tecnica.model.Location;
+import com.teclogi.prueba.tecnica.model.Position;
 import com.teclogi.prueba.tecnica.model.Satellite;
 import org.springframework.stereotype.Service;
 
@@ -8,20 +8,20 @@ import java.util.ArrayList;
 
 @Service
 public class SatelliteService {
-    public ArrayList<Satellite> setLocation(ArrayList<Satellite> satellites){
+    public ArrayList<Satellite> setSatellitesPosition(ArrayList<Satellite> satellites){
         for(Satellite s: satellites){
             switch (s.getName()){
                 case "Sputnik":
-                    s.setLocation(new Location(-500,-200));
+                    s.setPosition(new Position(-50,0));
                     break;
                 case "Explorer":
-                    s.setLocation(new Location(100,-100));
+                    s.setPosition(new Position(0, 173.2050808f));
                     break;
                 case "Asterix":
-                    s.setLocation(new Location(500,100));
+                    s.setPosition(new Position(50,0));
                     break;
                 default:
-                    s.setLocation(new Location(200,200));
+                    s.setPosition(new Position(50,200));
             }
         }
         return satellites;
