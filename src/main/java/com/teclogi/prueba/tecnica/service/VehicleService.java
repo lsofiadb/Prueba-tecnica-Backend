@@ -50,8 +50,53 @@ public class VehicleService {
         return result;
     }
 
-    public boolean isInDanger(String [] messages){
+    public boolean isInDanger(String [] messages ){
+        boolean danger = false;
+        int sequences = 0;
+        char [][] matrix = new char[messages.length][messages.length];
+        System.out.println("MATRIX");
+        for(int i = 0; i<messages.length; i++){
+            for(int j = 0; j< messages.length; j++){
+                matrix [i][j] = messages [i].charAt(j);
+                System.out.print(matrix[i][j]+" ");
+            }
+            System.out.println("");
+        }
+        /*-----PATH 1: HORIZONTAL -------*/
+        for(int i = 0; i<matrix.length;i++){
+            for(int j = 0; j<3;j++){
+                if(matrix[i][j] == matrix[i][j+1] && matrix[i][j+1] == matrix[i][j+2] & matrix[i][j+2] ==matrix[i][j+3]){
+                    sequences++;
+                }
+            }
+        }
+        /*-----PATH 2: VERTICAL ------*/
+        for(int i = 0; i<3;i++){
+            for(int j = 0; j< matrix.length;j++){
+                if(matrix[j][i] == matrix[j][i+1] && matrix[j][i+1] == matrix[j][i+2] & matrix[j][i+2] ==matrix[j][i+3]){
+                    sequences++;
+                }
+            }
+        }
 
-        return false;
+        /*-----PATH 3: PRINCIPAL DIAGONAL ------*/
+        for(int i = 0; i<matrix.length;i++){
+            for(int j = 0; j< 3;j++){
+                if(i == j){
+                    if(matrix[i][j] == matrix [i+1][j+1] & matrix[i+1][j+1] == matrix[i+2][j+2] & matrix[i+2][j+2] == matrix[i+3][j+3]){
+                        sequences++;
+                    }
+                }
+            }
+        }
+
+        System.out.println("sequences");
+        System.out.println(sequences);
+
+        if(sequences > 1){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

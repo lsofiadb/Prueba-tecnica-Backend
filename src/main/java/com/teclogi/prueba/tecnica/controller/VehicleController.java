@@ -28,6 +28,7 @@ public class VehicleController {
     @PostMapping("/tracking/")
     public ResponseEntity<Vehicle> getResponse(@RequestBody String payload){
         JSONObject jsonObject = new JSONObject(payload);
+        /*----------SATELLITES-------*/
         JSONArray satellitesJSONArray = jsonObject.getJSONArray("satellites");
         ArrayList<Satellite> satellitesArrayList = new ArrayList<>();
         for(int i=0; i<satellitesJSONArray.length();i++){
@@ -38,7 +39,20 @@ public class VehicleController {
         satellitesArrayList= satelliteService.setSatellitesPosition(satellitesArrayList);
         Vehicle vehicle = new Vehicle();
         vehicle.setPosition(vehicleService.getLocation(satellitesArrayList));
-        if(vehicle.getPosition()!=null){
+
+        /*-----------MESSAGE---------*/
+        JSONArray messageJSONArray = jsonObject.getJSONArray("message");
+        String [] messages = new String[messageJSONArray.length()];
+        for(int i = 0; i<messageJSONArray.length();i++){
+            messages [i] = messageJSONArray.getString(i);
+        }
+        if(vehicleService.isInDanger(messages)){
+            vehicle.setInDanger(true);
+        }else{
+            vehicle.setInDanger(false);
+        }
+
+        if(vehicle.getPosition()!=null & vehicle.isInDanger()){
             return ResponseEntity.ok().body(vehicle);
         }else{
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
