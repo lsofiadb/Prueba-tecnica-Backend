@@ -71,9 +71,9 @@ public class VehicleService {
             }
         }
         /*-----PATH 2: VERTICAL ------*/
-        for(int i = 0; i<3;i++){
-            for(int j = 0; j< matrix.length;j++){
-                if(matrix[j][i] == matrix[j][i+1] && matrix[j][i+1] == matrix[j][i+2] & matrix[j][i+2] ==matrix[j][i+3]){
+        for(int i = 0; i<matrix.length;i++){
+            for(int j = 0; j<3;j++){
+                if(matrix[j][i] == matrix[j+1][i] && matrix[j+1][i] == matrix[j+2][i] & matrix[j+2][i] ==matrix[j+3][i]){
                     sequences++;
                 }
             }
@@ -84,8 +84,17 @@ public class VehicleService {
             for(int j = 0; j< 3;j++){
                 if(i == j){
                     if(matrix[i][j] == matrix [i+1][j+1] & matrix[i+1][j+1] == matrix[i+2][j+2] & matrix[i+2][j+2] == matrix[i+3][j+3]){
-                        sequences++;
+                      // sequences++;
                     }
+                }
+            }
+        }
+
+        /*-------PATH 4: DIAGONALS FROM LEFT TO RIGHT------*/
+        for(int i = 0; i<3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (matrix[i][j] == matrix[i + 1][j + 1] & matrix[i][j] == matrix[i + 2][j + 2] & matrix[i][j] == matrix[i + 3][j + 3]) {
+                   sequences++;
                 }
             }
         }
