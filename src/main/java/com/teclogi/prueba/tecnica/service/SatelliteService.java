@@ -12,13 +12,13 @@ public class SatelliteService {
         for(Satellite s: satellites){
             switch (s.getName()){
                 case "Sputnik":
-                    s.setPosition(new Position(-50,0));
+                    s.setPosition(new Position(-500,-200));
                     break;
                 case "Explorer":
-                    s.setPosition(new Position(0, 173.2050808f));
+                    s.setPosition(new Position(100, -100));
                     break;
                 case "Asterix":
-                    s.setPosition(new Position(50,0));
+                    s.setPosition(new Position(500,100));
                     break;
                 default:
                     s.setPosition(new Position(50,200));
