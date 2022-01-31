@@ -12,34 +12,34 @@ public class VehicleService {
         Position vehiclePosition = new Position();
 
         /*-----Via Cramer's rule----*/
-        float x1 = satellites.get(0).getPosition().getX();
-        float x2 = satellites.get(1).getPosition().getX();
-        float x3 = satellites.get(2).getPosition().getX();
-        float y1 = satellites.get(0).getPosition().getY();
-        float y2 = satellites.get(1).getPosition().getY();
-        float y3 = satellites.get(2).getPosition().getY();
-        float r1 = satellites.get(0).getDistance();
-        float r2 = satellites.get(1).getDistance();
-        float r3 = satellites.get(2).getDistance();
-        float a = 2 * (x2 - x1);
-        float b = 2 * (y2 - y1);
-        float c = 2 * (x3 - x2);
-        float d = 2 * (y3 - y2);
-        float e = (float) (Math.pow(r1, 2) - Math.pow(r2, 2) - Math.pow(x1, 2) + Math.pow(x2, 2) - Math.pow(y1, 2) + Math.pow(y2, 2));
-        float f = (float) (Math.pow(r2, 2) - Math.pow(r3, 2) - Math.pow(x2, 2) + Math.pow(x3, 2) - Math.pow(y2, 2) + Math.pow(y3, 2));
+        double x1 = satellites.get(0).getPosition().getX();
+        double x2 = satellites.get(1).getPosition().getX();
+        double x3 = satellites.get(2).getPosition().getX();
+        double y1 = satellites.get(0).getPosition().getY();
+        double y2 = satellites.get(1).getPosition().getY();
+        double y3 = satellites.get(2).getPosition().getY();
+        double r1 = satellites.get(0).getDistance();
+        double r2 = satellites.get(1).getDistance();
+        double r3 = satellites.get(2).getDistance();
+        double a = 2 * (x2 - x1);
+        double b = 2 * (y2 - y1);
+        double c = 2 * (x3 - x2);
+        double d = 2 * (y3 - y2);
+        double e = (double) (Math.pow(r1, 2) - Math.pow(r2, 2) - Math.pow(x1, 2) + Math.pow(x2, 2) - Math.pow(y1, 2) + Math.pow(y2, 2));
+        double f = (double) (Math.pow(r2, 2) - Math.pow(r3, 2) - Math.pow(x2, 2) + Math.pow(x3, 2) - Math.pow(y2, 2) + Math.pow(y3, 2));
+        if(Math.abs((a*d)-(b*c)) >=Math.pow(10,-4)){
+            double x = ((e * d) - (b * f)) / ((a * d) - (b * c));
+            double y = ((a * f) - (e * c)) / ((a * d) - (b * c));
+            double equation1 = (double) (Math.pow((x - x1), 2) + Math.pow((y - y1), 2));
+            double equation2 = (double) (Math.pow((x - x2), 2) + Math.pow((y - y2), 2));
+            double equation3 = (double) (Math.pow((x - x3), 2) + Math.pow((y - y3), 2));
+            double equality1 = (double) Math.pow(r1, 2) - equation1;
+            double equality2 = (double) Math.pow(r2, 2) - equation2;
+            double equality3 = (double) Math.pow(r3, 2) - equation3;
 
-        if(Math.abs((a*d)-(b*c)) >=Math.pow(10,-12)){
-            float x = ((e * d) - (b * f)) / ((a * d) - (b * c));
-            float y = ((a * f) - (e * c)) / ((a * d) - (b * c));
-            float equation1 = (float) (Math.pow((x - x1), 2) + Math.pow((y - y1), 2));
-            float equation2 = (float) (Math.pow((x - x2), 2) + Math.pow((y - y2), 2));
-            float equation3 = (float) (Math.pow((x - x3), 2) + Math.pow((y - y3), 2));
-            float equality1 = (float) Math.pow(r1, 2) - equation1;
-            float equality2 = (float) Math.pow(r2, 2) - equation2;
-            float equality3 = (float) Math.pow(r3, 2) - equation3;
-            if (Math.abs(equality1) < Math.pow(10, -12) & Math.abs(equality2) < Math.pow(10, -12) & Math.abs(equality3) < Math.pow(10, -12)) {
-                vehiclePosition.setX(roundNumber((float) x, 1));
-                vehiclePosition.setY(roundNumber((float) y, 1));
+            if (Math.abs(equality1) < Math.pow(10, -2) & Math.abs(equality2) < Math.pow(10, -2) & Math.abs(equality3) < Math.pow(10, -2)) {
+                vehiclePosition.setX(roundNumber((double) x, 1));
+                vehiclePosition.setY(roundNumber((double) y, 1));
                 return vehiclePosition;
             } else {
                 return null;
@@ -49,10 +49,10 @@ public class VehicleService {
         }
     }
 
-    public float roundNumber(float number, int digitsNumber) {
-        float result = number * (float) Math.pow(10, digitsNumber);
+    public double roundNumber(double number, int digitsNumber) {
+        double result = number * (double) Math.pow(10, digitsNumber);
         result = Math.round(result);
-        result = result / (float) Math.pow(10, digitsNumber);
+        result = result / (double) Math.pow(10, digitsNumber);
         return result;
     }
 

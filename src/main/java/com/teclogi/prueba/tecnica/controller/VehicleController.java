@@ -33,7 +33,7 @@ public class VehicleController {
         ArrayList<Satellite> satellitesArrayList = new ArrayList<>();
         for (int i = 0; i < satellitesJSONArray.length(); i++) {
             String name = satellitesJSONArray.getJSONObject(i).getString("name");
-            float distance = satellitesJSONArray.getJSONObject(i).getFloat("distance");
+            double distance = satellitesJSONArray.getJSONObject(i).getDouble("distance");
             satellitesArrayList.add(new Satellite(name, distance, new Position()));
         }
         satellitesArrayList = satelliteService.setSatellitesPosition(satellitesArrayList);
