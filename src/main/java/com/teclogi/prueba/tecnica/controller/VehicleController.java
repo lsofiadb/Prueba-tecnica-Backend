@@ -36,6 +36,7 @@ public class VehicleController {
             double distance = satellitesJSONArray.getJSONObject(i).getDouble("distance");
             satellitesArrayList.add(new Satellite(name, distance, new Position()));
         }
+
         satellitesArrayList = satelliteService.setSatellitesPosition(satellitesArrayList);
         Vehicle vehicle = new Vehicle();
         vehicle.setPosition(vehicleService.getLocation(satellitesArrayList));
@@ -46,11 +47,8 @@ public class VehicleController {
         for (int i = 0; i < messageJSONArray.length(); i++) {
             messages[i] = messageJSONArray.getString(i);
         }
-        if (vehicleService.isInDanger(messages)) {
-            vehicle.setInDanger(true);
-        } else {
-            vehicle.setInDanger(false);
-        }
+
+        vehicle.setInDanger(vehicleService.isInDanger(messages));
 
         if (vehicle.getPosition() != null & vehicle.isInDanger()) {
             return ResponseEntity.ok().body(vehicle);

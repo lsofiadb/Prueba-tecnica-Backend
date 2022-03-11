@@ -92,32 +92,20 @@ public class VehicleService {
         }
 
         /*-------PATH 3: DIAGONALS FROM LEFT TO RIGHT------*/
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (matrix[i][j] == matrix[i + 1][j + 1] & matrix[i][j] == matrix[i + 2][j + 2] & matrix[i][j] == matrix[i + 3][j + 3]) {
-                    sequences++;
-                }
-            }
-        }
+        sequences += countDiagonalPath(matrix);
 
         /*----------------MIRROR MATRIX-------------------*/
         char mirrorMatrix[][] = new char[matrix.length][matrix.length];
         for (int i = 0; i < mirrorMatrix.length; i++) {
             for (int j = 0; j < mirrorMatrix.length; j++) {
-                mirrorMatrix[i][j] = matrix[5 - i][j];
+                mirrorMatrix[i][j] = matrix[matrix.length -1 - i][j];
             }
         }
 
         /*-------PATH 4: DIAGONALS FROM RIGHT TO LEFT------*/
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (mirrorMatrix[i][j] == mirrorMatrix[i + 1][j + 1] & mirrorMatrix[i][j] == mirrorMatrix[i + 2][j + 2] & mirrorMatrix[i][j] == mirrorMatrix[i + 3][j + 3]) {
-                    sequences++;
-                }
-            }
-        }
+        sequences += countDiagonalPath(mirrorMatrix);
 
-       // System.out.println("sequences");
+        // System.out.println("sequences");
        // System.out.println(sequences);
 
         if (sequences > 1) {
@@ -125,5 +113,16 @@ public class VehicleService {
         } else {
             return false;
         }
+    }
+    public int countDiagonalPath(char [][] matrix){
+        int sequences = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (matrix[i][j] == matrix[i + 1][j + 1] & matrix[i][j] == matrix[i + 2][j + 2] & matrix[i][j] == matrix[i + 3][j + 3]) {
+                    sequences++;
+                }
+            }
+        }
+        return sequences;
     }
 }
