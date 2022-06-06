@@ -9,7 +9,7 @@ Localizar la posición de un vehículo e identificar si se encuentra en peligro 
 
 ## Herramientas y dependencias utilizadas :hammer:
 
-**Spring Boot, Java, Heroku, OrgJSON** :leaves:
+**Spring Boot, Java, OrgJSON, Heroku, Postman** :leaves:
 
 ## Funcionamiento de la API 🛰️
 
