@@ -1,21 +1,22 @@
-# Prueba técnica Backend 👩‍💻
-##  *Objetivo* :telescope:
-Localizar la posición de un vehículo e identificar si se encuentra en peligro :mag:
+# Trilateration algorithm 👩‍💻
+##  *Objective* :telescope:
+Locate the position of a vehicle and identify if it is in danger. :mag:
 
-## *Solución* :microscope: 
-- Algoritmo matemático de trilateración para localizar la posición de un vehículo a partir de la posición de 3 satélites.
-- Algoritmo que permite descifrar un mensaje codificado enviado por un vehículo. 
+## *Solution* :microscope: 
+- Mathematical trilateration algorithm to locate the position of a vehicle based on the position of 3 satellites.
+- Algorithm that allows deciphering an encoded message sent by a vehicle.
 ---
 
-## Herramientas y dependencias utilizadas :hammer:
+## Tools and dependencies used :hammer:
 
 **Spring Boot, Java 17, OrgJSON, Heroku, Docker, Postman** :leaves:
 
-## Funcionamiento de la API 🛰️
+## Operation of the API 🛰️
 
-Para la ejecución de la API se realizará la correspondiente petición HTTP a través de Postman, solicitando el servicio a la URL: https://prueba-teclogi-backend.herokuapp.com/tracking/, seleccionando el método POST, asi como las opciones Body y raw, de esta forma se habilitará una sección para añadir la información (en formato JSON) del payload: 
-- Distancias entre cada satélite (indicando su nombre) y el vehículo
-- Mensaje codificado 
+To execute the API, the corresponding HTTP request will be made through Postman, requesting the service at the URL: https://localhost:8081/tracking/, selecting the POST method, as well as the Body and raw options. In this way, a section will be enabled to add the information (in JSON format) of the payload:
+
+- Distances between each satellite (indicating its name) and the vehicle
+- Encoded message"
 
 ``` JSON
 {
@@ -48,15 +49,15 @@ Para la ejecución de la API se realizará la correspondiente petición HTTP a t
   <img src="https://github.com/lsofiadb/Prueba-tecnica-Backend/blob/master/Images/Test1.jpg" >
  </div>
 
-Cuando es posible localizar al vehículo y el mensaje descifrado indica que está en peligro, la petición retorna las coordenadas de su ubicación (las cuales se encuentran aproximadas a un único decimal en la salida), como se observa a continuación:
+When it is possible to locate the vehicle and the deciphered message indicates that it is in danger, the request returns the coordinates of its location (which are approximated to a single decimal place in the output), as shown below:
 
 <div align="center">
   <img src="https://github.com/lsofiadb/Prueba-tecnica-Backend/blob/master/Images/Test2.jpg">
  </div>
 
-Cabe mencionar que si se desea un alto indice de precisión es pertinente ingresar datos con mayor cantidad de decimales. 
+It should be noted that if a high level of precision is desired, it is pertinent to enter data with a greater number of decimals.
 
-El funcionamiento del algoritmo se puede visualizar geométricamente, en donde las tres circunferencias se intersecan en un único punto. Para comprender más acerca del *desarrollo matemático* se puede consultar la [*documentación*](https://github.com/lsofiadb/Prueba-tecnica-Backend/blob/master/documentacion/Prueba%20t%C3%A9cnica%20Documentacion.pdf) :bulb:
+The operation of the algorithm can be geometrically visualized, where the three circles intersect at a single point. To learn more about the mathematical development, you can consult the [*documentation*](https://github.com/lsofiadb/Trilateration-algorithm/blob/master/documentacion/Prueba%20t%C3%A9cnica%20Documentacion.pdf) :bulb:
 
 <div align="center">
   <img src="https://github.com/lsofiadb/Prueba-tecnica-Backend/blob/master/Images/Test3.jpg">
